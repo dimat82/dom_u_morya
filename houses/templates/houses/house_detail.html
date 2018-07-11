@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+Дом {{ houses.name }}
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'base' %}">Главная страница</a>
+    <div>
+        <h2>{{ houses.name }}</h2>
+        {% if houses.photo %}
+            <img src="{{ houses.photo.url }}" alt="{{ houses.name }}">
+        {% endif %}
+        <div>{{ houses.price|intcomma }} руб.</div>
+        <div>{{ houses.description }}</div>
+    </div>
+    <h2>Заявка</h2>
+    <form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit">
+
+    </form>
+
+{% endblock %}

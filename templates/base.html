@@ -1,0 +1,20 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Главная страница{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+{% include 'header.html' %}
+{% block content %}
+{% for object in objects %}
+<p><h3>{{ forloop.counter }}. {{ object.name }} {{ object.price }} {{ object.description }}</h3></p>
+{% endfor %}
+
+{% endblock %}
+</body>
+{% include 'footer.html' %}
+</html>

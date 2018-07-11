@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+Список домов
+{% endblock %}
+
+{% block content %}
+    <form action=""method="get">
+    {{ form.as_p }}
+        <input type="submit" value="Поиск">
+    </form>
+{% for object in objects %}
+    <div>
+        <h2><a href="{% url 'house_detail' object.id %}">{{ object.name }}</a> </h2>
+        {% if object.photo %}
+            <img src="{{ object.photo.url }}" alt="{{ object.name }}">
+        {% endif %}
+        <div>{{ object.price|intcomma }} руб.</div>
+        <div>{{ object.description }}</div>
+    </div>
+{% endfor %}
+
+{% endblock %}
